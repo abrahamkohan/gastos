@@ -3,6 +3,10 @@
 // Main component
 export { PaymentsModule } from './components/Layout';
 
+// Local/Offline mode (uses localStorage, no Supabase needed)
+export { PaymentsModuleLocal } from './components/LayoutLocal';
+export { useLocalPayments } from './hooks/useLocalPayments';
+
 // Payment components
 export { PaymentList } from './components/payments/PaymentList';
 export { PaymentForm } from './components/payments/PaymentForm';
