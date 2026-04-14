@@ -36,6 +36,7 @@ export interface PaymentFormData {
   notes: string | null;
   icon: string;
   color: string | null;
+  recurrence?: Recurrence;
 }
 
 export interface PaymentsModuleConfig {
