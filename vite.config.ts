@@ -6,18 +6,21 @@ import { resolve } from 'path';
 // @ts-ignore
 export default defineConfig(({ mode }) => {
   const isDemo = mode === 'demo' || process.env.DEMO === 'true';
+  const isVercel = process.env.VERCEL === '1' || process.env.CI === 'true';
 
-  if (isDemo) {
+  // Modo demo o Vercel: build como app
+  if (isDemo || isVercel) {
     return {
       plugins: [react()],
-      root: './demo',
+      root: '.',
       build: {
-        outDir: '../dist-demo',
+        outDir: 'dist',
+        sourcemap: true,
       },
     };
   }
 
-  // Library build config
+  // Library build config (para npm publish)
   return {
     plugins: [
       react(),
