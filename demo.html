@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payments Module - Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gray: {
+              50: '#fafafa', 100: '#f5f5f5', 200: '#e5e5e5', 300: '#d4d4d4',
+              400: '#a3a3a3', 500: '#737373', 600: '#525252', 700: '#404040',
+              800: '#262626', 900: '#171717', 950: '#0a0a0a'
+            },
+            blue: { 50: '#eff6ff', 100: '#dbeafe', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8' },
+            green: { 50: '#f0fdf4', 100: '#dcfce7', 500: '#22c55e', 600: '#16a34a', 700: '#15803d' },
+            orange: { 50: '#fff7ed', 100: '#ffedd5', 500: '#f97316', 600: '#ea580c', 700: '#c2410c' },
+            purple: { 50: '#faf5ff', 100: '#f3e8ff', 500: '#a855f7', 600: '#9333ea', 700: '#7e22ce' },
+            yellow: { 50: '#fefce8', 100: '#fef9c3', 500: '#eab308', 600: '#ca8a04', 700: '#a16207' },
+            red: { 50: '#fef2f2', 100: '#fee2e2', 500: '#ef4444', 600: '#dc2626', 700: '#b91c1c' }
+          },
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+          boxShadow: {
+            'card': '0 0 0 1px rgb(0 0 0 / 0.05), 0 1px 2px 0 rgb(0 0 0 / 0.05)',
+            'card-hover': '0 0 0 1px rgb(0 0 0 / 0.05), 0 4px 8px 0 rgb(0 0 0 / 0.08)'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    .btn { @apply inline-flex items-center justify-center gap-2 font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50; }
+    .btn-primary { @apply bg-gray-900 text-white hover:bg-gray-800 focus-visible:ring-gray-900; }
+    .btn-secondary { @apply bg-white text-gray-900 border border-gray-200 hover:bg-gray-50 hover:border-gray-300 focus-visible:ring-gray-500; }
+    .btn-ghost { @apply text-gray-600 hover:bg-gray-100 hover:text-gray-900 focus-visible:ring-gray-500; }
+    .btn-danger { @apply bg-red-600 text-white hover:bg-red-700 focus-visible:ring-red-600; }
+    .btn-sm { @apply h-8 px-3 text-xs rounded-md; }
+    .btn-md { @apply h-9 px-4 text-sm rounded-md; }
+    .animate-spin { animation: spin 1s linear infinite; }
+    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+  <!-- Header -->
+  <header class="sticky top-0 z-10 bg-white/80 backdrop-blur-md border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-14">
+        <h1 class="text-lg font-semibold text-gray-900">💰 Demo - Módulo de Pagos</h1>
+        <div class="flex gap-2">
+          <button class="btn btn-secondary btn-md">Secondary</button>
+          <button class="btn btn-primary btn-md">Nuevo Pago</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    
+    <!-- UI Components -->
+    <section class="mb-8">
+      <h2 class="text-xl font-semibold text-gray-900 mb-4">UI Components</h2>
+      <div class="bg-white rounded-lg border border-gray-200 p-6 space-y-6">
+        
+        <!-- Buttons -->
+        <div>
+          <h3 class="text-sm font-medium text-gray-700 mb-3">Buttons</h3>
+          <div class="flex flex-wrap gap-2">
+            <button class="btn btn-primary btn-md">Primary</button>
+            <button class="btn btn-secondary btn-md">Secondary</button>
+            <button class="btn btn-ghost btn-md">Ghost</button>
+            <button class="btn btn-danger btn-md">Danger</button>
+            <button class="btn btn-primary btn-md" disabled>
+              <svg class="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              Loading
+            </button>
+            <button class="btn btn-primary btn-md" disabled>Disabled</button>
+          </div>
+        </div>
+
+        <!-- Inputs -->
+        <div>
+          <h3 class="text-sm font-medium text-gray-700 mb-3">Inputs</h3>
+          <div class="max-w-md space-y-3">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1.5">Nombre</label>
+              <input type="text" placeholder="Ej: Luz ANDE" class="w-full h-9 px-3 text-sm bg-white border border-gray-200 rounded-md transition-colors placeholder:text-gray-400 hover:border-gray-300 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1.5">Monto</label>
+              <input type="number" placeholder="450000" class="w-full h-9 px-3 text-sm bg-white border border-gray-200 rounded-md transition-colors placeholder:text-gray-400 hover:border-gray-300 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1.5">Con error</label>
+              <input type="text" class="w-full h-9 px-3 text-sm bg-white border border-red-300 rounded-md transition-colors focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-100">
+              <p class="mt-1.5 text-xs text-red-600">Este campo es requerido</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Checkbox -->
+        <div>
+          <h3 class="text-sm font-medium text-gray-700 mb-3">Checkbox</h3>
+          <label class="inline-flex items-center gap-2 cursor-pointer select-none group">
+            <input type="checkbox" class="sr-only" checked>
+            <div class="w-4 h-4 rounded border-2 transition-all flex items-center justify-center bg-gray-900 border-gray-900">
+              <svg class="w-full h-full text-white" viewBox="0 0 16 16" fill="none">
+                <path d="M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z" fill="currentColor"></path>
+              </svg>
+            </div>
+            <span class="text-sm text-gray-700">Marcar como pagado</span>
+          </label>
+        </div>
+
+        <!-- Category Badges -->
+        <div>
+          <h3 class="text-sm font-medium text-gray-700 mb-3">Category Badges</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="inline-flex items-center gap-1.5 rounded-md border font-medium px-2 py-1 text-xs bg-blue-50 text-blue-700 border-blue-200"><span>⚡</span><span>Servicios</span></span>
+            <span class="inline-flex items-center gap-1.5 rounded-md border font-medium px-2 py-1 text-xs bg-green-50 text-green-700 border-green-200"><span>🏢</span><span>Expensas</span></span>
+            <span class="inline-flex items-center gap-1.5 rounded-md border font-medium px-2 py-1 text-xs bg-orange-50 text-orange-700 border-orange-200"><span>💼</span><span>Honorarios</span></span>
+            <span class="inline-flex items-center gap-1.5 rounded-md border font-medium px-2 py-1 text-xs bg-purple-50 text-purple-700 border-purple-200"><span>📋</span><span>Impuestos</span></span>
+            <span class="inline-flex items-center gap-1.5 rounded-md border font-medium px-2 py-1 text-xs bg-yellow-50 text-yellow-700 border-yellow-200"><span>📄</span><span>Trámites</span></span>
+            <span class="inline-flex items-center gap-1.5 rounded-md border font-medium px-2 py-1 text-xs bg-gray-100 text-gray-700 border-gray-300"><span>📌</span><span>Otros</span></span>
+          </div>
+        </div>
+
+        <!-- Due Date Badges -->
+        <div>
+          <h3 class="text-sm font-medium text-gray-700 mb-3">Due Date Badges</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-md border text-xs font-medium bg-red-50 text-red-700 border-red-200"><span>!</span><span>12/04/2026 (vencido)</span></span>
+            <span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-md border text-xs font-medium bg-orange-50 text-orange-700 border-orange-200"><span>⚠</span><span>16/04/2026 (2d)</span></span>
+            <span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-md border text-xs font-medium bg-yellow-50 text-yellow-700 border-yellow-200"><span>◷</span><span>19/04/2026 (5d)</span></span>
+            <span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-md border text-xs font-medium bg-gray-100 text-gray-600 border-gray-200"><span>◷</span><span>24/04/2026 (10d)</span></span>
+            <span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-md border text-xs font-medium bg-green-50 text-green-700 border-green-200"><span>✓</span><span>12/04/2026</span></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Payment Cards -->
+    <section class="mb-8">
+      <h2 class="text-xl font-semibold text-gray-900 mb-4">Payment Cards</h2>
+      <div class="space-y-3 max-w-3xl">
+        
+        <!-- Card 1: Próximo (naranja) -->
+        <div class="group bg-white rounded-lg border border-gray-200 p-4 transition-all duration-200 hover:border-gray-300 hover:shadow-card-hover">
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex items-start gap-3 flex-1 min-w-0">
+              <span class="text-2xl flex-shrink-0">⚡</span>
+              <div class="flex-1 min-w-0">
+                <h3 class="font-medium text-base truncate text-gray-900">Luz (ANDE)</h3>
+                <p class="text-sm text-gray-600 mt-0.5">Abraham</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="text-right">
+                <p class="font-semibold text-lg text-gray-900">$450.000</p>
+              </div>
+              <div class="opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1">
+                <button class="p-1.5 rounded text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors" title="Editar">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>
+                </button>
+                <button class="p-1.5 rounded text-gray-400 hover:text-red-600 hover:bg-red-50 transition-colors" title="Eliminar">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="flex items-center justify-between mt-3 pt-3 border-t border-gray-100">
+            <div class="flex items-center gap-2">
+              <span class="inline-flex items-center gap-1.5 rounded-md border font-medium px-2 py-1 text-xs bg-blue-50 text-blue-700 border-blue-200"><span>⚡</span><span>Servicios</span></span>
+              <span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-md border text-xs font-medium bg-orange-50 text-orange-700 border-orange-200"><span>⚠</span><span>16/04/2026 (2d)</span></span>
+            </div>
+            <label class="inline-flex items-center gap-2 cursor-pointer select-none group">
+              <input type="checkbox" class="sr-only">
+              <div class="w-4 h-4 rounded border-2 transition-all flex items-center justify-center bg-white border-gray-300 group-hover:border-gray-400"></div>
+              <span class="text-sm text-gray-700">Pendiente</span>
+            </label>
+          </div>
+          <div class="mt-3 p-2 bg-gray-50 rounded text-sm text-gray-600">Factura mensual de electricidad</div>
+        </div>
+
+        <!-- Card 2: Pagado (verde + strikethrough) -->
+        <div class="group bg-gray-50 rounded-lg border border-gray-200 p-4 transition-all duration-200 hover:border-gray-300 hover:shadow-card-hover">
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex items-start gap-3 flex-1 min-w-0">
+              <span class="text-2xl flex-shrink-0">💼</span>
+              <div class="flex-1 min-w-0">
+                <h3 class="font-medium text-base truncate text-gray-600 line-through">Honorarios Contador</h3>
+                <p class="text-sm text-gray-600 mt-0.5">Abraham</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="text-right">
+                <p class="font-semibold text-lg text-gray-400">$1.200.000</p>
+              </div>
+              <div class="opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1">
+                <button class="p-1.5 rounded text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors" title="Editar">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>
+                </button>
+                <button class="p-1.5 rounded text-gray-400 hover:text-red-600 hover:bg-red-50 transition-colors" title="Eliminar">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="flex items-center justify-between mt-3 pt-3 border-t border-gray-100">
+            <div class="flex items-center gap-2">
+              <span class="inline-flex items-center gap-1.5 rounded-md border font-medium px-2 py-1 text-xs bg-orange-50 text-orange-700 border-orange-200"><span>💼</span><span>Honorarios</span></span>
+              <span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-md border text-xs font-medium bg-green-50 text-green-700 border-green-200"><span>✓</span><span>11/04/2026</span></span>
+            </div>
+            <label class="inline-flex items-center gap-2 cursor-pointer select-none group">
+              <input type="checkbox" class="sr-only" checked>
+              <div class="w-4 h-4 rounded border-2 transition-all flex items-center justify-center bg-gray-900 border-gray-900">
+                <svg class="w-full h-full text-white" viewBox="0 0 16 16" fill="none">
+                  <path d="M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z" fill="currentColor"></path>
+                </svg>
+              </div>
+              <span class="text-sm text-gray-700">Pagado</span>
+            </label>
+          </div>
+          <div class="mt-3 p-2 bg-gray-50 rounded text-sm text-gray-600">Servicios contables mensuales</div>
+        </div>
+
+        <!-- Card 3: Vencido (rojo) -->
+        <div class="group bg-white rounded-lg border border-gray-200 p-4 transition-all duration-200 hover:border-gray-300 hover:shadow-card-hover">
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex items-start gap-3 flex-1 min-w-0">
+              <span class="text-2xl flex-shrink-0">📄</span>
+              <div class="flex-1 min-w-0">
+                <h3 class="font-medium text-base truncate text-gray-900">Patente Vehículo</h3>
+                <p class="text-sm text-gray-600 mt-0.5">Spirit Mariscal</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="text-right">
+                <p class="font-semibold text-lg text-gray-900">$180.000</p>
+              </div>
+              <div class="opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1">
+                <button class="p-1.5 rounded text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors" title="Editar">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>
+                </button>
+                <button class="p-1.5 rounded text-gray-400 hover:text-red-600 hover:bg-red-50 transition-colors" title="Eliminar">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="flex items-center justify-between mt-3 pt-3 border-t border-gray-100">
+            <div class="flex items-center gap-2">
+              <span class="inline-flex items-center gap-1.5 rounded-md border font-medium px-2 py-1 text-xs bg-yellow-50 text-yellow-700 border-yellow-200"><span>📄</span><span>Trámites</span></span>
+              <span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-md border text-xs font-medium bg-red-50 text-red-700 border-red-200"><span>!</span><span>13/04/2026 (vencido)</span></span>
+            </div>
+            <label class="inline-flex items-center gap-2 cursor-pointer select-none group">
+              <input type="checkbox" class="sr-only">
+              <div class="w-4 h-4 rounded border-2 transition-all flex items-center justify-center bg-white border-gray-300 group-hover:border-gray-400"></div>
+              <span class="text-sm text-gray-700">Pendiente</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- States -->
+    <section class="mb-8">
+      <h2 class="text-xl font-semibold text-gray-900 mb-4">States</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        
+        <!-- Loading -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <h3 class="text-sm font-medium text-gray-700 mb-3">Loading</h3>
+          <div class="flex items-center justify-center py-12">
+            <div class="animate-spin rounded-full h-8 w-8 border-2 border-gray-200 border-t-gray-900"></div>
+          </div>
+        </div>
+
+        <!-- Empty -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <h3 class="text-sm font-medium text-gray-700 mb-3">Empty</h3>
+          <div class="text-center py-8">
+            <div class="text-4xl mb-3">📭</div>
+            <h3 class="text-base font-medium text-gray-900 mb-1">No hay pagos pendientes</h3>
+            <p class="text-sm text-gray-600 mb-4">Creá tu primer pago para comenzar</p>
+            <button class="btn btn-primary btn-md">Crear Pago</button>
+          </div>
+        </div>
+
+        <!-- Error -->
+        <div class="bg-white rounded-lg border border-gray-200 p-6">
+          <h3 class="text-sm font-medium text-gray-700 mb-3">Error</h3>
+          <div class="rounded-lg bg-red-50 border border-red-200 p-4">
+            <div class="flex gap-3">
+              <span class="text-red-600">⚠️</span>
+              <div>
+                <h3 class="text-sm font-medium text-red-900 mb-1">Error al cargar pagos</h3>
+                <p class="text-sm text-red-700">No se pudo conectar al servidor</p>
+                <button class="btn btn-ghost btn-sm mt-2">Reintentar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Design System Summary -->
+    <section class="mb-8">
+      <h2 class="text-xl font-semibold text-gray-900 mb-4">Design System</h2>
+      <div class="bg-white rounded-lg border border-gray-200 p-6">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+          <div>
+            <h4 class="font-medium text-gray-900 mb-2">Fondos</h4>
+            <div class="space-y-1">
+              <div class="flex items-center gap-2"><div class="w-6 h-6 rounded bg-gray-50 border"></div><span class="text-gray-600">bg-gray-50</span></div>
+              <div class="flex items-center gap-2"><div class="w-6 h-6 rounded bg-white border"></div><span class="text-gray-600">bg-white</span></div>
+            </div>
+          </div>
+          <div>
+            <h4 class="font-medium text-gray-900 mb-2">Texto</h4>
+            <div class="space-y-1">
+              <div class="text-gray-900 font-medium">text-gray-900 (principal)</div>
+              <div class="text-gray-600">text-gray-600 (secundario)</div>
+              <div class="text-gray-400">text-gray-400 (terciario)</div>
+            </div>
+          </div>
+          <div>
+            <h4 class="font-medium text-gray-900 mb-2">Bordes</h4>
+            <div class="space-y-1">
+              <div class="flex items-center gap-2"><div class="w-6 h-6 rounded border border-gray-200"></div><span class="text-gray-600">border-gray-200</span></div>
+              <div class="flex items-center gap-2"><div class="w-6 h-6 rounded border border-gray-300"></div><span class="text-gray-600">border-gray-300 (hover)</span></div>
+            </div>
+          </div>
+          <div>
+            <h4 class="font-medium text-gray-900 mb-2">Sombras</h4>
+            <div class="space-y-1">
+              <div class="flex items-center gap-2"><div class="w-6 h-6 rounded bg-white shadow-card"></div><span class="text-gray-600">shadow-card</span></div>
+              <div class="flex items-center gap-2"><div class="w-6 h-6 rounded bg-white shadow-card-hover"></div><span class="text-gray-600">shadow-card-hover</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-gray-200 bg-white mt-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <p class="text-sm text-gray-600 text-center">
+        Módulo de Pagos y Recordatorios - Diseño Minimalista
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>

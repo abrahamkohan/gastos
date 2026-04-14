@@ -1,0 +1,64 @@
+{
+  "name": "@abrahamkohan/payments-module",
+  "version": "0.1.0",
+  "description": "Módulo de Pagos y Recordatorios - React 19 + Supabase",
+  "type": "module",
+  "main": "./dist/payments-module.umd.js",
+  "module": "./dist/payments-module.es.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/payments-module.es.js",
+      "require": "./dist/payments-module.umd.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./styles": "./dist/style.css"
+  },
+  "scripts": {
+    "dev": "vite",
+    "demo": "vite --mode demo",
+    "build": "tsc && vite build",
+    "build:demo": "vite build --mode demo",
+    "preview": "vite preview",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.49.4",
+    "@tanstack/react-query": "^5.74.3",
+    "@hookform/resolvers": "^5.0.1",
+    "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
+    "react-hook-form": "^7.55.0",
+    "tailwind-merge": "^3.2.0",
+    "zod": "^3.24.2"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tailwindcss": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.1",
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
+    "@vitejs/plugin-react": "^4.4.0",
+    "typescript": "~5.7.2",
+    "vite": "^6.2.0",
+    "vite-plugin-dts": "^4.5.3",
+    "vitest": "^3.1.1"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "react",
+    "payments",
+    "supabase",
+    "module",
+    "finance"
+  ],
+  "license": "MIT",
+  "author": "Abraham Kohan"
+}
