@@ -16,6 +16,10 @@ export default defineConfig(({ mode }) => {
       build: {
         outDir: 'dist',
         sourcemap: true,
+        cssCodeSplit: false,
+      },
+      css: {
+        postcss: './postcss.config.js',
       },
     };
   }
