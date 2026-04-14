@@ -1,6 +1,6 @@
 import React from 'react';
 import { Payment } from '../../types';
-import { CategoryBadge, DueDateBadge } from '../ui/Badge';
+import { CategoryBadge } from '../ui/Badge';
 import { differenceInDays, isPast } from 'date-fns';
 
 interface PaymentCardMobileProps {

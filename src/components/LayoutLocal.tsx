@@ -28,7 +28,6 @@ const PaymentsModuleLocalContent: React.FC = () => {
 
   const [showForm, setShowForm] = useState(false);
   const [editingPayment, setEditingPayment] = useState<Payment | null>(null);
-  const [showMobileMenu, setShowMobileMenu] = useState(false);
 
   const handleCreate = async (data: PaymentFormData) => {
     await createPayment(data);
