@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Administración - Mockup</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gray: { 50: '#fafafa', 100: '#f5f5f5', 200: '#e5e5e5', 300: '#d4d4d4', 400: '#a3a3a3', 500: '#737373', 600: '#525252', 700: '#404040', 800: '#262626', 900: '#171717' },
+            blue: { 50: '#eff6ff', 100: '#dbeafe', 500: '#3b82f6', 600: '#2563eb' },
+            green: { 50: '#f0fdf4', 100: '#dcfce7', 500: '#22c55e' },
+            orange: { 50: '#fff7ed', 100: '#ffedd5', 500: '#f97316' },
+            purple: { 50: '#faf5ff', 100: '#f3e8ff', 500: '#a855f7' },
+            yellow: { 50: '#fefce8', 100: '#fef9c3', 500: '#eab308' },
+            red: { 50: '#fef2f2', 100: '#fee2e2', 500: '#ef4444' }
+          },
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .nav-item:hover { background: rgba(0,0,0,0.04); }
+    .nav-item.active { background: rgba(0,0,0,0.06); }
+  </style>
+</head>
+<body class="bg-gray-50 h-screen overflow-hidden">
+  <div class="flex h-full">
+    
+    <!-- SIDEBAR -->
+    <aside class="w-64 bg-white border-r border-gray-200 flex flex-col">
+      <div class="p-4 border-b border-gray-200">
+        <h1 class="text-lg font-semibold text-gray-900">⚙️ Administración</h1>
+        <p class="text-xs text-gray-500 mt-0.5">Configuración del sistema</p>
+      </div>
+      
+      <nav class="flex-1 p-2 space-y-0.5">
+        <button onclick="showTab('dashboard')" id="nav-dashboard" class="nav-item active w-full flex items-center gap-3 px-3 py-2 rounded-md text-sm text-gray-700 transition-colors">
+          <span>📊</span>
+          <span>Dashboard</span>
+        </button>
+        <button onclick="showTab('payments')" id="nav-payments" class="nav-item w-full flex items-center gap-3 px-3 py-2 rounded-md text-sm text-gray-700 transition-colors">
+          <span>💰</span>
+          <span>Pagos</span>
+          <span class="ml-auto bg-gray-100 text-gray-600 text-xs px-2 py-0.5 rounded-full">6</span>
+        </button>
+        <button onclick="showTab('categories')" id="nav-categories" class="nav-item w-full flex items-center gap-3 px-3 py-2 rounded-md text-sm text-gray-700 transition-colors">
+          <span>🏷️</span>
+          <span>Categorías</span>
+          <span class="ml-auto bg-gray-100 text-gray-600 text-xs px-2 py-0.5 rounded-full">6</span>
+        </button>
+        <button onclick="showTab('responsibles')" id="nav-responsibles" class="nav-item w-full flex items-center gap-3 px-3 py-2 rounded-md text-sm text-gray-700 transition-colors">
+          <span>👥</span>
+          <span>Responsables</span>
+          <span class="ml-auto bg-gray-100 text-gray-600 text-xs px-2 py-0.5 rounded-full">4</span>
+        </button>
+        <button onclick="showTab('icons')" id="nav-icons" class="nav-item w-full flex items-center gap-3 px-3 py-2 rounded-md text-sm text-gray-700 transition-colors">
+          <span>🎨</span>
+          <span>Iconos</span>
+          <span class="ml-auto bg-gray-100 text-gray-600 text-xs px-2 py-0.5 rounded-full">40+</span>
+        </button>
+      </nav>
+      
+      <div class="p-4 border-t border-gray-200">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full bg-gray-900 text-white flex items-center justify-center text-sm font-medium">A</div>
+          <div class="flex-1 min-w-0">
+            <p class="text-sm font-medium text-gray-900 truncate">Abraham</p>
+            <p class="text-xs text-gray-500 truncate">Admin</p>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-1 overflow-auto">
+      
+      <!-- DASHBOARD TAB -->
+      <div id="tab-dashboard" class="p-6 max-w-6xl mx-auto">
+        <header class="mb-6">
+          <h2 class="text-2xl font-semibold text-gray-900">Dashboard</h2>
+          <p class="text-gray-600 mt-1">Resumen de tus finanzas</p>
+        </header>
+
+        <!-- Stats Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+          <div class="bg-white rounded-lg border border-gray-200 p-4">
+            <p class="text-sm text-gray-600">Total Pendiente</p>
+            <p class="text-2xl font-semibold text-gray-900 mt-1">$5.200.000</p>
+            <p class="text-xs text-gray-500 mt-1">5 pagos</p>
+          </div>
+          <div class="bg-white rounded-lg border border-gray-200 p-4">
+            <p class="text-sm text-gray-600">Total Pagado</p>
+            <p class="text-2xl font-semibold text-green-600 mt-1">$1.200.000</p>
+            <p class="text-xs text-gray-500 mt-1">1 pago</p>
+          </div>
+          <div class="bg-white rounded-lg border border-gray-200 p-4">
+            <p class="text-sm text-gray-600">Próximo Vencimiento</p>
+            <p class="text-2xl font-semibold text-orange-600 mt-1">1 día</p>
+            <p class="text-xs text-gray-500 mt-1">Patente Vehículo</p>
+          </div>
+          <div class="bg-white rounded-lg border border-gray-200 p-4">
+            <p class="text-sm text-gray-600">Categorías</p>
+            <p class="text-2xl font-semibold text-gray-900 mt-1">6</p>
+            <p class="text-xs text-gray-500 mt-1">Activas</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <!-- Gráfico por Categoría -->
+          <div class="bg-white rounded-lg border border-gray-200 p-4">
+            <h3 class="text-sm font-medium text-gray-900 mb-4">Distribución por Categoría</h3>
+            <div class="space-y-3">
+              <div class="flex items-center gap-3">
+                <span class="text-lg">⚡</span>
+                <div class="flex-1">
+                  <div class="flex justify-between text-sm mb-1">
+                    <span>Servicios</span>
+                    <span class="text-gray-600">$450.000</span>
+                  </div>
+                  <div class="h-2 bg-gray-100 rounded-full overflow-hidden">
+                    <div class="h-full bg-blue-500 rounded-full" style="width: 8%"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="text-lg">🏢</span>
+                <div class="flex-1">
+                  <div class="flex justify-between text-sm mb-1">
+                    <span>Expensas</span>
+                    <span class="text-gray-600">$850.000</span>
+                  </div>
+                  <div class="h-2 bg-gray-100 rounded-full overflow-hidden">
+                    <div class="h-full bg-green-500 rounded-full" style="width: 16%"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="text-lg">📋</span>
+                <div class="flex-1">
+                  <div class="flex justify-between text-sm mb-1">
+                    <span>Impuestos</span>
+                    <span class="text-gray-600">$3.500.000</span>
+                  </div>
+                  <div class="h-2 bg-gray-100 rounded-full overflow-hidden">
+                    <div class="h-full bg-purple-500 rounded-full" style="width: 67%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Próximos Vencimientos -->
+          <div class="bg-white rounded-lg border border-gray-200 p-4">
+            <h3 class="text-sm font-medium text-gray-900 mb-4">Próximos Vencimientos</h3>
+            <div class="space-y-3">
+              <div class="flex items-center justify-between p-3 bg-red-50 rounded-lg border border-red-200">
+                <div class="flex items-center gap-3">
+                  <span class="text-lg">📄</span>
+                  <div>
+                    <p class="font-medium text-gray-900 text-sm">Patente Vehículo</p>
+                    <p class="text-xs text-red-600">Vence mañana</p>
+                  </div>
+                </div>
+                <span class="font-semibold text-gray-900">$180.000</span>
+              </div>
+              <div class="flex items-center justify-between p-3 bg-orange-50 rounded-lg border border-orange-200">
+                <div class="flex items-center gap-3">
+                  <span class="text-lg">⚡</span>
+                  <div>
+                    <p class="font-medium text-gray-900 text-sm">Luz (ANDE)</p>
+                    <p class="text-xs text-orange-600">Vence en 2 días</p>
+                  </div>
+                </div>
+                <span class="font-semibold text-gray-900">$450.000</span>
+              </div>
+              <div class="flex items-center justify-between p-3 bg-yellow-50 rounded-lg border border-yellow-200">
+                <div class="flex items-center gap-3">
+                  <span class="text-lg">🏢</span>
+                  <div>
+                    <p class="font-medium text-gray-900 text-sm">Expensas Edificio</p>
+                    <p class="text-xs text-yellow-600">Vence en 5 días</p>
+                  </div>
+                </div>
+                <span class="font-semibold text-gray-900">$850.000</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAYMENTS TAB (vista actual) -->
+      <div id="tab-payments" class="hidden p-6 max-w-6xl mx-auto">
+        <header class="mb-6 flex items-center justify-between">
+          <div>
+            <h2 class="text-2xl font-semibold text-gray-900">Pagos</h2>
+            <p class="text-gray-600 mt-1">Gestión de pagos y recordatorios</p>
+          </div>
+          <button class="inline-flex items-center gap-2 bg-gray-900 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-800">
+            <span>+</span>
+            <span>Nuevo Pago</span>
+          </button>
+        </header>
+        
+        <!-- Lista de pagos (mock) -->
+        <div class="space-y-3">
+          <div class="bg-white rounded-lg border border-gray-200 p-4">
+            <div class="flex items-start justify-between">
+              <div class="flex items-start gap-3">
+                <span class="text-2xl">⚡</span>
+                <div>
+                  <h3 class="font-medium text-gray-900">Luz (ANDE)</h3>
+                  <p class="text-sm text-gray-600">Abraham</p>
+                </div>
+              </div>
+              <div class="text-right">
+                <p class="font-semibold text-lg text-gray-900">$450.000</p>
+              </div>
+            </div>
+            <div class="flex items-center justify-between mt-3 pt-3 border-t border-gray-100">
+              <div class="flex gap-2">
+                <span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-md border text-xs font-medium bg-blue-50 text-blue-700 border-blue-200">⚡ Servicios</span>
+                <span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-md border text-xs font-medium bg-orange-50 text-orange-700 border-orange-200">⚠ En 2 días</span>
+              </div>
+              <label class="flex items-center gap-2">
+                <input type="checkbox" class="w-4 h-4 rounded border-gray-300">
+                <span class="text-sm text-gray-700">Pendiente</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CATEGORIES TAB -->
+      <div id="tab-categories" class="hidden p-6 max-w-4xl mx-auto">
+        <header class="mb-6">
+          <h2 class="text-2xl font-semibold text-gray-900">Categorías</h2>
+          <p class="text-gray-600 mt-1">Personalizá las categorías de pagos</p>
+        </header>
+
+        <div class="bg-white rounded-lg border border-gray-200">
+          <!-- Header de tabla -->
+          <div class="grid grid-cols-12 gap-4 p-4 border-b border-gray-200 text-sm font-medium text-gray-600">
+            <div class="col-span-1">Icono</div>
+            <div class="col-span-3">Nombre</div>
+            <div class="col-span-3">Color</div>
+            <div class="col-span-2">Pagos</div>
+            <div class="col-span-2">Total</div>
+            <div class="col-span-1"></div>
+          </div>
+
+          <!-- Categorías -->
+          <div class="divide-y divide-gray-100">
+            <!-- Servicios -->
+            <div class="grid grid-cols-12 gap-4 p-4 items-center hover:bg-gray-50">
+              <div class="col-span-1 text-2xl">⚡</div>
+              <div class="col-span-3">
+                <input type="text" value="Servicios" class="w-full px-2 py-1 text-sm border border-gray-200 rounded">
+              </div>
+              <div class="col-span-3 flex items-center gap-2">
+                <div class="w-6 h-6 rounded bg-blue-50 border border-blue-200"></div>
+                <select class="text-sm border border-gray-200 rounded px-2 py-1">
+                  <option>Azul</option>
+                  <option>Verde</option>
+                  <option>Naranja</option>
+                  <option>Púrpura</option>
+                  <option>Amarillo</option>
+                  <option>Gris</option>
+                </select>
+              </div>
+              <div class="col-span-2 text-sm text-gray-600">1 pago</div>
+              <div class="col-span-2 text-sm font-medium">$450.000</div>
+              <div class="col-span-1 text-right">
+                <button class="text-gray-400 hover:text-gray-600">✏️</button>
+              </div>
+            </div>
+
+            <!-- Expensas -->
+            <div class="grid grid-cols-12 gap-4 p-4 items-center hover:bg-gray-50">
+              <div class="col-span-1 text-2xl">🏢</div>
+              <div class="col-span-3">
+                <input type="text" value="Expensas" class="w-full px-2 py-1 text-sm border border-gray-200 rounded">
+              </div>
+              <div class="col-span-3 flex items-center gap-2">
+                <div class="w-6 h-6 rounded bg-green-50 border border-green-200"></div>
+                <select class="text-sm border border-gray-200 rounded px-2 py-1">
+                  <option>Verde</option>
+                  <option>Azul</option>
+                  <option>Naranja</option>
+                  <option>Púrpura</option>
+                  <option>Amarillo</option>
+                  <option>Gris</option>
+                </select>
+              </div>
+              <div class="col-span-2 text-sm text-gray-600">1 pago</div>
+              <div class="col-span-2 text-sm font-medium">$850.000</div>
+              <div class="col-span-1 text-right">
+                <button class="text-gray-400 hover:text-gray-600">✏️</button>
+              </div>
+            </div>
+
+            <!-- Honorarios -->
+            <div class="grid grid-cols-12 gap-4 p-4 items-center hover:bg-gray-50">
+              <div class="col-span-1 text-2xl">💼</div>
+              <div class="col-span-3">
+                <input type="text" value="Honorarios" class="w-full px-2 py-1 text-sm border border-gray-200 rounded">
+              </div>
+              <div class="col-span-3 flex items-center gap-2">
+                <div class="w-6 h-6 rounded bg-orange-50 border border-orange-200"></div>
+                <select class="text-sm border border-gray-200 rounded px-2 py-1">
+                  <option>Naranja</option>
+                  <option>Azul</option>
+                  <option>Verde</option>
+                  <option>Púrpura</option>
+                  <option>Amarillo</option>
+                  <option>Gris</option>
+                </select>
+              </div>
+              <div class="col-span-2 text-sm text-gray-600">1 pago</div>
+              <div class="col-span-2 text-sm font-medium text-green-600">$1.200.000 ✓</div>
+              <div class="col-span-1 text-right">
+                <button class="text-gray-400 hover:text-gray-600">✏️</button>
+              </div>
+            </div>
+
+            <!-- Impuestos -->
+            <div class="grid grid-cols-12 gap-4 p-4 items-center hover:bg-gray-50">
+              <div class="col-span-1 text-2xl">📋</div>
+              <div class="col-span-3">
+                <input type="text" value="Impuestos" class="w-full px-2 py-1 text-sm border border-gray-200 rounded">
+              </div>
+              <div class="col-span-3 flex items-center gap-2">
+                <div class="w-6 h-6 rounded bg-purple-50 border border-purple-200"></div>
+                <select class="text-sm border border-gray-200 rounded px-2 py-1">
+                  <option>Púrpura</option>
+                  <option>Azul</option>
+                  <option>Verde</option>
+                  <option>Naranja</option>
+                  <option>Amarillo</option>
+                  <option>Gris</option>
+                </select>
+              </div>
+              <div class="col-span-2 text-sm text-gray-600">1 pago</div>
+              <div class="col-span-2 text-sm font-medium">$3.500.000</div>
+              <div class="col-span-1 text-right">
+                <button class="text-gray-400 hover:text-gray-600">✏️</button>
+              </div>
+            </div>
+
+            <!-- Trámites -->
+            <div class="grid grid-cols-12 gap-4 p-4 items-center hover:bg-gray-50">
+              <div class="col-span-1 text-2xl">📄</div>
+              <div class="col-span-3">
+                <input type="text" value="Trámites" class="w-full px-2 py-1 text-sm border border-gray-200 rounded">
+              </div>
+              <div class="col-span-3 flex items-center gap-2">
+                <div class="w-6 h-6 rounded bg-yellow-50 border border-yellow-200"></div>
+                <select class="text-sm border border-gray-200 rounded px-2 py-1">
+                  <option>Amarillo</option>
+                  <option>Azul</option>
+                  <option>Verde</option>
+                  <option>Naranja</option>
+                  <option>Púrpura</option>
+                  <option>Gris</option>
+                </select>
+              </div>
+              <div class="col-span-2 text-sm text-gray-600">1 pago</div>
+              <div class="col-span-2 text-sm font-medium">$180.000</div>
+              <div class="col-span-1 text-right">
+                <button class="text-gray-400 hover:text-gray-600">✏️</button>
+              </div>
+            </div>
+
+            <!-- Otros -->
+            <div class="grid grid-cols-12 gap-4 p-4 items-center hover:bg-gray-50">
+              <div class="col-span-1 text-2xl">📌</div>
+              <div class="col-span-3">
+                <input type="text" value="Otros" class="w-full px-2 py-1 text-sm border border-gray-200 rounded">
+              </div>
+              <div class="col-span-3 flex items-center gap-2">
+                <div class="w-6 h-6 rounded bg-gray-100 border border-gray-300"></div>
+                <select class="text-sm border border-gray-200 rounded px-2 py-1">
+                  <option>Gris</option>
+                  <option>Azul</option>
+                  <option>Verde</option>
+                  <option>Naranja</option>
+                  <option>Púrpura</option>
+                  <option>Amarillo</option>
+                </select>
+              </div>
+              <div class="col-span-2 text-sm text-gray-600">1 pago</div>
+              <div class="col-span-2 text-sm font-medium">$320.000</div>
+              <div class="col-span-1 text-right">
+                <button class="text-gray-400 hover:text-gray-600">✏️</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Preview de categoría -->
+          <div class="p-4 border-t border-gray-200 bg-gray-50">
+            <p class="text-sm font-medium text-gray-700 mb-3">Preview de Badge</p>
+            <div class="flex gap-2">
+              <span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-md border text-xs font-medium bg-blue-50 text-blue-700 border-blue-200">
+                <span>⚡</span><span>Servicios</span>
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-md border text-xs font-medium bg-green-50 text-green-700 border-green-200">
+                <span>🏢</span><span>Expensas</span>
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-2 py-1 rounded-md border text-xs font-medium bg-orange-50 text-orange-700 border-orange-200">
+                <span>💼</span><span>Honorarios</span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-6 flex gap-3">
+          <button class="inline-flex items-center gap-2 bg-gray-900 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-800">
+            💾 Guardar cambios
+          </button>
+          <button class="inline-flex items-center gap-2 bg-white border border-gray-200 text-gray-700 px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-50">
+            ↺ Restaurar defaults
+          </button>
+        </div>
+      </div>
+
+      <!-- RESPONSIBLES TAB -->
+      <div id="tab-responsibles" class="hidden p-6 max-w-4xl mx-auto">
+        <header class="mb-6 flex items-center justify-between">
+          <div>
+            <h2 class="text-2xl font-semibold text-gray-900">Responsables</h2>
+            <p class="text-gray-600 mt-1">Personas asignadas a pagos</p>
+          </div>
+          <button class="inline-flex items-center gap-2 bg-gray-900 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-800">
+            <span>+</span>
+            <span>Agregar</span>
+          </button>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Abraham -->
+          <div class="bg-white rounded-lg border border-gray-200 p-4 hover:border-gray-300 transition-colors">
+            <div class="flex items-start justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 text-white flex items-center justify-center text-lg font-semibold">
+                  A
+                </div>
+                <div>
+                  <h3 class="font-medium text-gray-900">Abraham</h3>
+                  <p class="text-sm text-gray-500">3 pagos asignados</p>
+                </div>
+              </div>
+              <button class="text-gray-400 hover:text-gray-600">✏️</button>
+            </div>
+            <div class="mt-4 pt-4 border-t border-gray-100 grid grid-cols-2 gap-4">
+              <div>
+                <p class="text-2xl font-semibold text-gray-900">$4.550.000</p>
+                <p class="text-xs text-gray-500">Total asignado</p>
+              </div>
+              <div>
+                <p class="text-2xl font-semibold text-green-600">$1.200.000</p>
+                <p class="text-xs text-gray-500">Total pagado</p>
+              </div>
+            </div>
+            <div class="mt-3 flex gap-2">
+              <span class="text-xs px-2 py-1 bg-orange-50 text-orange-700 rounded">1 pendiente</span>
+              <span class="text-xs px-2 py-1 bg-green-50 text-green-700 rounded">1 pagado</span>
+            </div>
+          </div>
+
+          <!-- Nora -->
+          <div class="bg-white rounded-lg border border-gray-200 p-4 hover:border-gray-300 transition-colors">
+            <div class="flex items-start justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-full bg-gradient-to-br from-pink-400 to-pink-600 text-white flex items-center justify-center text-lg font-semibold">
+                  N
+                </div>
+                <div>
+                  <h3 class="font-medium text-gray-900">Nora</h3>
+                  <p class="text-sm text-gray-500">1 pago asignado</p>
+                </div>
+              </div>
+              <button class="text-gray-400 hover:text-gray-600">✏️</button>
+            </div>
+            <div class="mt-4 pt-4 border-t border-gray-100 grid grid-cols-2 gap-4">
+              <div>
+                <p class="text-2xl font-semibold text-gray-900">$850.000</p>
+                <p class="text-xs text-gray-500">Total asignado</p>
+              </div>
+              <div>
+                <p class="text-2xl font-semibold text-gray-400">$0</p>
+                <p class="text-xs text-gray-500">Total pagado</p>
+              </div>
+            </div>
+            <div class="mt-3 flex gap-2">
+              <span class="text-xs px-2 py-1 bg-orange-50 text-orange-700 rounded">1 pendiente</span>
+            </div>
+          </div>
+
+          <!-- Orestes -->
+          <div class="bg-white rounded-lg border border-gray-200 p-4 hover:border-gray-300 transition-colors">
+            <div class="flex items-start justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-full bg-gradient-to-br from-green-400 to-green-600 text-white flex items-center justify-center text-lg font-semibold">
+                  O
+                </div>
+                <div>
+                  <h3 class="font-medium text-gray-900">Orestes</h3>
+                  <p class="text-sm text-gray-500">1 pago asignado</p>
+                </div>
+              </div>
+              <button class="text-gray-400 hover:text-gray-600">✏️</button>
+            </div>
+            <div class="mt-4 pt-4 border-t border-gray-100 grid grid-cols-2 gap-4">
+              <div>
+                <p class="text-2xl font-semibold text-gray-900">$3.500.000</p>
+                <p class="text-xs text-gray-500">Total asignado</p>
+              </div>
+              <div>
+                <p class="text-2xl font-semibold text-gray-400">$0</p>
+                <p class="text-xs text-gray-500">Total pagado</p>
+              </div>
+            </div>
+            <div class="mt-3 flex gap-2">
+              <span class="text-xs px-2 py-1 bg-yellow-50 text-yellow-700 rounded">1 próximo</span>
+            </div>
+          </div>
+
+          <!-- Spirit Mariscal -->
+          <div class="bg-white rounded-lg border border-gray-200 p-4 hover:border-gray-300 transition-colors">
+            <div class="flex items-start justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-400 to-purple-600 text-white flex items-center justify-center text-lg font-semibold">
+                  S
+                </div>
+                <div>
+                  <h3 class="font-medium text-gray-900">Spirit Mariscal</h3>
+                  <p class="text-sm text-gray-500">1 pago asignado</p>
+                </div>
+              </div>
+              <button class="text-gray-400 hover:text-gray-600">✏️</button>
+            </div>
+            <div class="mt-4 pt-4 border-t border-gray-100 grid grid-cols-2 gap-4">
+              <div>
+                <p class="text-2xl font-semibold text-gray-900">$180.000</p>
+                <p class="text-xs text-gray-500">Total asignado</p>
+              </div>
+              <div>
+                <p class="text-2xl font-semibold text-gray-400">$0</p>
+                <p class="text-xs text-gray-500">Total pagado</p>
+              </div>
+            </div>
+            <div class="mt-3 flex gap-2">
+              <span class="text-xs px-2 py-1 bg-red-50 text-red-700 rounded">URGENTE - Vence mañana</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ICONS TAB -->
+      <div id="tab-icons" class="hidden p-6 max-w-4xl mx-auto">
+        <header class="mb-6">
+          <h2 class="text-2xl font-semibold text-gray-900">Galería de Iconos</h2>
+          <p class="text-gray-600 mt-1">Iconos disponibles para personalizar tus pagos</p>
+        </header>
+
+        <!-- Search -->
+        <div class="mb-6">
+          <input 
+            type="text" 
+            placeholder="🔍 Buscar iconos..." 
+            class="w-full max-w-md h-10 px-4 bg-white border border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+          >
+        </div>
+
+        <!-- Categorías de iconos -->
+        <div class="space-y-8">
+          <!-- Finanzas -->
+          <div>
+            <h3 class="text-sm font-medium text-gray-900 mb-3 flex items-center gap-2">
+              <span>💰</span> Finanzas
+            </h3>
+            <div class="bg-white rounded-lg border border-gray-200 p-4">
+              <div class="grid grid-cols-8 gap-3">
+                <button class="aspect-square flex items-center justify-center text-2xl hover:bg-gray-50 rounded-lg transition-colors border-2 border-blue-500 bg-blue-50">💰</button>
+                <button class="aspect-square flex items-center justify-center text-2xl hover:bg-gray-50 rounded-lg transition-colors">💵</button>
+                <button class="aspect-square flex items-center justify-center text-2xl hover:bg-gray-50 rounded-lg transition-colors">💳</button>
+                <button class="aspect-square flex items-center justify-center text-2xl hover:bg-gray-50 rounded-lg transition-colors">🏦</button>
+                <button class="aspect-square flex items-center justify-center text-2xl hover:bg-gray-50 rounded-lg transition-colors">💎</button>
+                <button class="aspect-square flex items-center justify-center text-2xl hover:bg-gray-50 rounded-lg transition-colors">🪙</button>
+                <button class="aspect-square flex items-center justify-center text-2xl hover:bg-gray-50 rounded-lg transition-colors">💴</button>
+                <button class="aspect-square flex items-center justify-center text-2xl hover:bg-gray-50 rounded-lg transition-colors">💶</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Casa/Hogar -->
+          <div>
+            <h3 class="text-sm font-medium text-gray-900 mb-3 flex items-center gap-2">
+              <span>🏠</span> Casa y Hogar
+            </h3>
+            <div class="bg-white rounded-lg border border-gray-200 p-4">
+              <div class="grid grid-cols-8 gap-3">
+                <button class="aspect-square flex items-center justify-center text-2xl hover:bg-gray-50 rounded-lg transition-colors">🏠</button>
+                <button class="aspect-square flex items-center justify-center text-2xl hover:bg-gray-50 rounded-lg transition-colors">🏢</button>
+                <button class="aspect-square flex items-center justify-center text-2xl hover:bg-gray-50 rounded-lg transition-colors">⚡</button>
+                <button class="aspect-square flex items-center justify-center text-2xl hover:bg-gray-50 rounded-lg transition-colors">💡</button>
+                <button class="aspect-square flex items-center justify-center text-2xl hover:bg-gray-50 rounded-lg transition-colors">🔥</button>
+                <button class="aspect-square flex items-center justify-center text-2xl hover:bg-gray-50 rounded-lg transition-colors">💧</button>
+                <button class="aspect-square flex items-center justify-center text-2xl hover:bg-gray-50 rounded-lg transition-colors">📡</button>
+                <button class="aspect-square flex items-center justify-center text-2xl hover:bg-gray-50 rounded-lg transition-colors">📺</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Transporte -->
+          <div>
+            <h3 class="text-sm font-medium text-gray-900 mb-3 flex items-center gap-2">
+              <span>🚗</span> Transporte
+            </h3>
+            <div class="bg-white rounded-lg border border-gray-200 p-4">
+              <div class="grid grid-cols-8 gap-3">
+                <button class="aspect-square flex items-center justify-center text-2xl hover:bg-gray-50 rounded-lg transition-colors">🚗</button>
+                <button class="aspect-square flex items-center justify-center text-2xl hover:bg-gray-50 rounded-lg transition-colors">🚕</button>
+                <button class="aspect-square flex items-center justify-center text-2xl hover:bg-gray-50 rounded-lg transition-colors">🚙</button>
+                <button class="aspect-square flex items-center justify-center text-2xl hover:bg-gray-50 rounded-lg transition-colors">🚌</button>
+                <button class="aspect-square flex items-center justify-center text-2xl hover:bg-gray-50 rounded-lg transition-colors">🚎</button>
+                <button class="aspect-square flex items-center justify-center text-2xl hover:bg-gray-50 rounded-lg transition-colors">🏍️</button>
+                <button class="aspect-square flex items-center justify-center text-2xl hover:bg-gray-50 rounded-lg transition-colors">🚲</button>
+                <button class="aspect-square flex items-center justify-center text-2xl hover:bg-gray-50 rounded-lg transition-colors">⛽</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Documentos/Trámites -->
+          <div>
+            <h3 class="text-sm font-medium text-gray-900 mb-3 flex items-center gap-2">
+              <span>📄</span> Documentos y Trámites
+            </h3>
+            <div class="bg-white rounded-lg border border-gray-200 p-4">
+              <div class="grid grid-cols-8 gap-3">
+                <button class="aspect-square flex items-center justify-center text-2xl hover:bg-gray-50 rounded-lg transition-colors">📄</button>
+                <button class="aspect-square flex items-center justify-center text-2xl hover:bg-gray-50 rounded-lg transition-colors">📋</button>
+                <button class="aspect-square flex items-center justify-center text-2xl hover:bg-gray-50 rounded-lg transition-colors">📑</button>
+                <button class="aspect-square flex items-center justify-center text-2xl hover:bg-gray-50 rounded-lg transition-colors">📊</button>
+                <button class="aspect-square flex items-center justify-center text-2xl hover:bg-gray-50 rounded-lg transition-colors">📈</button>
+                <button class="aspect-square flex items-center justify-center text-2xl hover:bg-gray-50 rounded-lg transition-colors">📝</button>
+                <button class="aspect-square flex items-center justify-center text-2xl hover:bg-gray-50 rounded-lg transition-colors">📌</button>
+                <button class="aspect-square flex items-center justify-center text-2xl hover:bg-gray-50 rounded-lg transition-colors">📎</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Otros -->
+          <div>
+            <h3 class="text-sm font-medium text-gray-900 mb-3 flex items-center gap-2">
+              <span>🎯</span> Otros
+            </h3>
+            <div class="bg-white rounded-lg border border-gray-200 p-4">
+              <div class="grid grid-cols-8 gap-3">
+                <button class="aspect-square flex items-center justify-center text-2xl hover:bg-gray-50 rounded-lg transition-colors">🎓</button>
+                <button class="aspect-square flex items-center justify-center text-2xl hover:bg-gray-50 rounded-lg transition-colors">🏥</button>
+                <button class="aspect-square flex items-center justify-center text-2xl hover:bg-gray-50 rounded-lg transition-colors">💊</button>
+                <button class="aspect-square flex items-center justify-center text-2xl hover:bg-gray-50 rounded-lg transition-colors">🛡️</button>
+                <button class="aspect-square flex items-center justify-center text-2xl hover:bg-gray-50 rounded-lg transition-colors">❄️</button>
+                <button class="aspect-square flex items-center justify-center text-2xl hover:bg-gray-50 rounded-lg transition-colors">🔧</button>
+                <button class="aspect-square flex items-center justify-center text-2xl hover:bg-gray-50 rounded-lg transition-colors">🎮</button>
+                <button class="aspect-square flex items-center justify-center text-2xl hover:bg-gray-50 rounded-lg transition-colors">📱</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Uso de iconos -->
+        <div class="mt-8 bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <h4 class="text-sm font-medium text-blue-900 mb-2">💡 Cómo usar los iconos</h4>
+          <p class="text-sm text-blue-700">
+            Los iconos se usan al crear o editar un pago. Hacé clic en el icono que mejor represente tu pago.
+            Por ejemplo: ⚡ para servicios eléctricos, 🏢 para expensas, 💼 para honorarios profesionales.
+          </p>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script>
+    function showTab(tabName) {
+      // Hide all tabs
+      document.querySelectorAll('[id^="tab-"]').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.nav-item').forEach(el => {
+        el.classList.remove('active');
+        el.classList.remove('bg-gray-100');
+      });
+      
+      // Show selected tab
+      document.getElementById('tab-' + tabName).classList.remove('hidden');
+      document.getElementById('nav-' + tabName).classList.add('active');
+    }
+  </script>
+</body>
+</html>
